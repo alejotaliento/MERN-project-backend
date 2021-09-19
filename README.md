@@ -1,3 +1,3 @@
 # MERN-project-backend
 
-First web development project with MERN Stack 
+backend-personal-web developed with Stack MERN
