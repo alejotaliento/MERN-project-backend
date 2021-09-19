@@ -12,6 +12,7 @@ const menuRoutes = require("./routers/menu");
 const newsletterRoutes = require("./routers/newsletter");
 const courseRoutes = require("./routers/course");
 const postRoutes = require("./routers/post");
+const path = require('path');
 
 
 // Config body-parser
@@ -38,5 +39,15 @@ app.use(`/api/${API_VERSION}`, menuRoutes);
 app.use(`/api/${API_VERSION}`, newsletterRoutes);
 app.use(`/api/${API_VERSION}`, courseRoutes);
 app.use(`/api/${API_VERSION}`, postRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+    // Exprees will serve up production assets
+    app.use(express.static('client/build'));
+
+    // Express serve up index.html file if it doesn't recognize route
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 module.exports = app;
