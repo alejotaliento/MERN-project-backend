@@ -41,11 +41,11 @@ app.use(`/api/${API_VERSION}`, courseRoutes);
 app.use(`/api/${API_VERSION}`, postRoutes);
 
 // Exprees will serve up production assets
-app.use(express.static('client/build'));
+app.use(express.static('server/build'));
 
 // Express serve up index.html file if it doesn't recognize route
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'index.js'));
 });
 
 module.exports = app;
